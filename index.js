@@ -1,7 +1,6 @@
 var fs = require('fs')
 var path = require('path')
 
-var _ = require('underscore')
 var mkdirp = require('mkdirp')
 var quickTemp = require('quick-temp')
 var symlinkOrCopy = require('symlink-or-copy')
@@ -29,7 +28,7 @@ Sieve.prototype.read = function(readTree) {
 			nodir: true
 		})
 
-		_.each(files, function(file) {
+		files.forEach(function(file) {
 			var src = path.join(srcDir, file)
 			var dest = _this.options.changeFilePath ? _this.options.changeFilePath(file) : file
 			dest = path.join(destDir, dest)

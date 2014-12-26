@@ -1,6 +1,9 @@
 #broccoli-file-sieve
 
-Broccoli plugin that filters files from input tree and move them to new destination in output tree.
+Broccoli plugin that filters files from the input tree.
+Filtering uses glob patterns.
+
+It also allows to change files paths in the output tree.
 
 #Install
 
@@ -15,10 +18,10 @@ var sieve = require('broccoli-file-sieve')
  
 //take all js files except files from 'node'
 var js = sieve('src', {
-	files: [
-		'**/*.js',
-		'!node/**'
-	]
+  files: [
+    '**/*.js',
+    '!node/**'
+  ]
 })
 
 module.exports = js

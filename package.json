@@ -2,6 +2,10 @@
   "name": "broccoli-file-sieve",
   "version": "0.0.1",
   "description": "Broccoli plugin that filters files from input tree and move them to new destination in output tree.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunflowerdeath/broccoli-file-sieve"
+  },
   "main": "index.js",
   "directories": {
     "test": "tests"

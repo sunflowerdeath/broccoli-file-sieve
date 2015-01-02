@@ -5,13 +5,13 @@ Filtering uses glob patterns.
 
 It also allows to change files paths in the output tree.
 
-#Install
+##Install
 
 ```
 npm install broccoli-file-sieve
 ```
 
-#Usage
+##Usage
 
 ```js
 var sieve = require('broccoli-file-sieve')
@@ -27,27 +27,27 @@ var js = sieve('src', {
 module.exports = js
 ```
 
-#API
+##API
 
-##sieve(inputTree, options)
+###sieve(inputTree, options)
 
 Creates plugin instance.
 
-###inputTree
+####inputTree
 
 Type: `Tree`
 
 Broccoli tree.
 
-###options
+####options
 
 Type: `object`
 
 Object with options.
 
-##List of options
+###List of options
 
-###files
+####files
 
 Type: `array.<string>`
 
@@ -55,26 +55,26 @@ List of glob patterns.
 Patterns that begin with `!` will exclude files.
 Patterns are processed in order, so inclusion and exclusion order is significant.
 
-###srcDir
+####srcDir
 
-Type: `string`<br>
+Type: `string`
 
 Path in the input tree from where files will be copied.
 This will be base path for glob patterns.
 
-###destDir
+####destDir
 
-Type: `string`<br>
+Type: `string`
 
 Path in the output tree where files will be copied.
 
-###changeFilePath
+####changeFilePath
 
 Type: `function(string) -> string`
 
 Function that takes relative path of each file and returns new path of this file.
 
-#License
+##License
 
 Public domain, see the `LICENCE.md` file.
 

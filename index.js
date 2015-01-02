@@ -4,7 +4,7 @@ var path = require('path')
 var mkdirp = require('mkdirp')
 var quickTemp = require('quick-temp')
 var symlinkOrCopy = require('symlink-or-copy')
-var multiglob = require('multiple-glob')
+var dirmatch = require('dirmatch')
 
 var Sieve = function(inputTree, options) {
 	if (!(this instanceof Sieve)) return new Sieve(inputTree, options)
@@ -22,11 +22,7 @@ Sieve.prototype.read = function(readTree) {
 		var destDir = quickTemp.makeOrRemake(_this, 'destDir')
 		if (_this.options.destDir) destDir = path.join(destDir, _this.options.destDir)
 
-		var files = multiglob.sync(_this.options.files, {
-			cwd: srcDir,
-			nomount: true,
-			nodir: true
-		})
+		var files = dirmatch(srcDir, _this.options.files)
 
 		files.forEach(function(file) {
 			var src = path.join(srcDir, file)
@@ -44,6 +40,7 @@ Sieve.prototype.cleanup = function() {
 }
 
 Sieve.prototype.copyFile = function(src, dest) {
+	if (fs.statSync(src).isDirectory()) return
 	var destDir = path.dirname(dest)
 	if (!fs.existsSync(destDir)) mkdirp.sync(destDir)
 	symlinkOrCopy.sync(src, dest)

@@ -46,7 +46,7 @@ describe('broccoli-file-sieve', function() {
 		builder = new broccoli.Builder(tree)
 		return builder.build().then(function(result) {
 			assert.deepEqual(
-				getFiles(result.directory),
+				getFiles(path.join(result.directory, 'dir')),
 				getFiles(DIR)
 			)
 		})

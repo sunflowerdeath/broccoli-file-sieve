@@ -20,6 +20,7 @@ Sieve.prototype.read = function(readTree) {
 		if (_this.options.srcDir) srcDir = path.join(srcDir, _this.options.srcDir)
 
 		var destDir = quickTemp.makeOrRemake(_this, 'destDir')
+		var topDestDir = destDir
 		if (_this.options.destDir) destDir = path.join(destDir, _this.options.destDir)
 
 		var files = dirmatch(srcDir, _this.options.files)
@@ -31,7 +32,7 @@ Sieve.prototype.read = function(readTree) {
 			_this.copyFile(src, dest)
 		})
 
-		return destDir
+		return topDestDir
 	})
 }
 
@@ -40,7 +41,6 @@ Sieve.prototype.cleanup = function() {
 }
 
 Sieve.prototype.copyFile = function(src, dest) {
-	if (fs.statSync(src).isDirectory()) return
 	var destDir = path.dirname(dest)
 	if (!fs.existsSync(destDir)) mkdirp.sync(destDir)
 	symlinkOrCopy.sync(src, dest)

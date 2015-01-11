@@ -14,6 +14,8 @@ var Sieve = function(inputTree, options) {
 	this.options = options
 }
 
+Sieve.prototype.description = 'Sieve'
+
 Sieve.prototype.read = function(readTree) {
 	var _this = this
 	return readTree(this.inputTree).then(function(srcDir) {
